@@ -16,12 +16,15 @@ algorithm = os.getenv("ALGORITHM")
 access_token = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
+#hashing the password and limiting the length to 72 characters to prevent bcrypt truncation
 def hash_password(password:str):
-    return pwd_context.hash(password)
+    return pwd_context.hash(password[:72])
 
+#verifying the password by comparing the user password with the hashed password
 def verify_password(plain_pass: str, hashed_pass: str):
     return pwd_context.verify(plain_pass, hashed_pass)
 
+#creating access token using jwt token with exp time
 def create_access_token(token: dict):
     payload = token.copy()
     expire = datetime.now(timezone.utc) + timedelta(minutes = access_token)
@@ -29,13 +32,14 @@ def create_access_token(token: dict):
     return jwt.encode(payload, Secret_key, algorithm=algorithm)
 
 
+#getting current user from the token and verifying the token
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    try:
+    try: 
         payload = jwt.decode(token, Secret_key, algorithms=[algorithm])
         email = payload.get("email")
         if email is None:
