@@ -5,6 +5,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from dotenv import load_dotenv
 from models.users import User
+from models.users import RoleType
 import os
 
 load_dotenv()
@@ -31,7 +32,6 @@ def create_access_token(token: dict):
     payload.update({"exp": expire})
     return jwt.encode(payload, Secret_key, algorithm=algorithm)
 
-
 #getting current user from the token and verifying the token
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(
@@ -51,3 +51,9 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     if not user:
         raise credentials_exception
     return user
+
+#getting current admin user from the token and verifying the token and checking if the user is admin
+def get_current_admin(current_user: User = Depends(get_current_user)):
+    if current_user.role != RoleType.admin:
+        raise HTTPException(status_code = 403, detail = "Admin access required")
+    return current_user

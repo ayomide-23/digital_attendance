@@ -3,9 +3,17 @@ from db import init_db
 from routes.auth import router as auth_router
 from routes.attendance import router as attendance_router
 from routes.qr import router as qr_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = ["http://localhost:5173"],
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers = ["*"],
+)
 @app.on_event("startup")
 async def startup_event():
     await init_db()

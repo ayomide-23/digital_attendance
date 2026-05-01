@@ -2,6 +2,8 @@ from fastapi import APIRouter, HTTPException
 from models.users import User, BlockType
 from utils.security import hash_password, verify_password, create_access_token
 from schema.auth import RegisterRequest, LoginRequest
+from utils.security import  get_current_admin
+from fastapi import Depends
 
 router = APIRouter()
 
@@ -36,10 +38,14 @@ async def login(request: LoginRequest):
     #verifying password
     if not verify_password(request.password, existing_user.password):
         raise HTTPException(status_code = 400, detail = "Incorrect password")
-    
+
     #creating token 
-    token = create_access_token({"user_id": existing_user.id, "email": existing_user.email})
+    token = create_access_token({"user_id": str(existing_user.id), "email": existing_user.email, "role": existing_user.role})
     return {
         "access_token" : token,
         "token_type": "bearer"
     }
+
+@router.post("/generate_qr")
+async def generate_qr(admin: User = Depends(get_current_admin)):
+    return {"message": "QR code generated successfully"}

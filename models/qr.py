@@ -4,9 +4,9 @@ from enum import Enum
 from pydantic import Field
 
 class BlockType(str, Enum):
-    A: str = "A"
-    B: str = "B"
-    C: str = "C"
+    A = "A"
+    B = "B"
+    C = "C"
 
 class Code(Document):
     code:str
