@@ -7,6 +7,7 @@ class RegisterRequest(BaseModel):
     password: str
     staff_id: str
     block: str
+    role : str
 
 class LoginRequest(BaseModel):
     email: str
