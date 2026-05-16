@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@layer components{
+    .background{
+        background-color: #070b0b;
+        background-image:
+            radial-gradient(70% 60% at 12% 18%, rgba(26, 54, 54, 0.48), transparent 60%),
+            radial-gradient(60% 55% at 88% 78%, rgba(26, 54, 54, 0.38), transparent 62%),
+            linear-gradient(135deg, #050808 0%, #0c1212 46%, #090f0f 100%);
+    }
+}

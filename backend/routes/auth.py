@@ -65,10 +65,8 @@ async def login(request: LoginRequest, response: Response):
         samesite="lax"
     )
     return {
-        "access_token" : token,
-        "token_type": "bearer",
         "role": existing_user.role,
-        "mesage": "User logged in successfully"
+        "message": "User logged in successfully"
     }
  
 
@@ -79,7 +77,12 @@ async def generate_qr(admin: User = Depends(get_current_admin)):
 @router.get("/me")
 async def get_me(current_user: User = Depends(get_current_user)):
     return{
+        "fname": f"{current_user.fname}",
+        "lname": f"{current_user.lname}",
         "role": RoleType(current_user.role),
         "email": current_user.email,
-        "staff_id": current_user.staff_id
+        "staff_id": current_user.staff_id,
+        "block": current_user.block
     }
+
+

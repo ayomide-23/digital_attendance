@@ -52,7 +52,7 @@ async def check_attendance(
     )
     await new_record.insert()
     return {
-        "message": f"{scan_request.attendance_type} recorded successfully",
+        "message": f"{scan_request.attndance_type} recorded successfully",
         "timestamp": new_record.timestamp,
         "block": new_record.block,
         "staff_id": new_record.staff_id,

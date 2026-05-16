@@ -1,4 +1,4 @@
-from db import init_db
+from backend.db import init_db
 import asyncio
 from models.users import User, RoleType, BlockType
 from utils.security import hash_password, verify_password
