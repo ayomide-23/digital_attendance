@@ -43,6 +43,7 @@ export default function AdminDashboard() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ block }),
+        targetAddressSpace: "private"
       });
 
       const responseText = await response.text();

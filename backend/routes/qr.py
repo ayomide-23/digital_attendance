@@ -17,13 +17,6 @@ router = APIRouter()
 @router.post("/generate/{block}")
 async def generate_code(block: BlockType, admin: User = Depends(get_current_admin)):
 
-
-    # if admin.block.value != block.value:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_403_FORBIDDEN,
-    #         detail="Admin cannot generate QR code for another block",
-    #     )
-
     now = datetime.now(timezone.utc)
 
     #checking if there is an existing code for the block that is still valid

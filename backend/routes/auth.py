@@ -63,6 +63,7 @@ async def login(request: LoginRequest, response: Response):
         httponly=True,
         secure=False,
         samesite="lax"
+        # samesite="none" for testing
     )
     return {
         "role": existing_user.role,
