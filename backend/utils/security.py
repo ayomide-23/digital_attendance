@@ -21,7 +21,7 @@ def hash_password(password:str):
 
 #verifying the password by comparing the user password with the hashed password
 def verify_password(plain_pass: str, hashed_pass: str):
-    return pwd_context.verify(plain_pass, hashed_pass)
+    return pwd_context.verify(plain_pass[:72], hashed_pass)
 
 #creating access token using jwt token with exp time
 def create_access_token(token: dict):
