@@ -53,7 +53,7 @@ export default function Register() {
     setisLoading(true); 
     
     try {
-      const response = await fetch("https://digital-attendance-78h5.onrender.com//auth/register", {
+      const response = await fetch("https://digital-attendance-78h5.onrender.com/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

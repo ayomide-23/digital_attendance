@@ -11,7 +11,7 @@ export default function UserDashboard() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch("https://digital-attendance-78h5.onrender.com//auth/me", {
+        const response = await fetch("https://digital-attendance-78h5.onrender.com/auth/me", {
           credentials: "include",
         });
         const data = await response.json();
@@ -49,7 +49,7 @@ export default function UserDashboard() {
     setIsLoading(true);
     setError("");
     try {
-      const response = await fetch("https://digital-attendance-78h5.onrender.com//attendance/scan", {
+      const response = await fetch("https://digital-attendance-78h5.onrender.com/attendance/scan", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

@@ -33,7 +33,7 @@ export default function Login() {
     setisLoading(true);
 
     try {
-      const response = await fetch("https://digital-attendance-78h5.onrender.com//auth/login", {
+      const response = await fetch("https://digital-attendance-78h5.onrender.com/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

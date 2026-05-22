@@ -12,7 +12,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchBlock = async () => {
       try {
-        const response = await fetch("http://localhost:8000/qr/blocks", {
+        const response = await fetch("https://digital-attendance-78h5.onrender.com/qr/blocks", {
           credentials: "include"
         });
         const data = await response.json();
@@ -36,7 +36,7 @@ export default function AdminDashboard() {
     setError("");
 
     try {
-      const response = await fetch(`https://digital-attendance-78h5.onrender.com//qr/generate/${block}`, {
+      const response = await fetch(`https://digital-attendance-78h5.onrender.com/qr/generate/${block}`, {
         method: "POST",
         credentials: "include",
         headers: {
