@@ -36,7 +36,7 @@ export default function AdminDashboard() {
     setError("");
 
     try {
-      const response = await fetch(`http://localhost:8000/qr/generate/${block}`, {
+      const response = await fetch(`https://digital-attendance-78h5.onrender.com//qr/generate/${block}`, {
         method: "POST",
         credentials: "include",
         headers: {
