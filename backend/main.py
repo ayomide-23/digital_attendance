@@ -9,10 +9,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = ["https://poignantly-unsprouted-braylen.ngrok-free.dev"],
+    allow_origins = ["https://digital-attendance-three.vercel.app/"],
     allow_credentials = True,
-    allow_methods = ["*"], 
-    allow_headers = ["*"],
+    allow_methods = ["GET", "POST", "PUT", "DELETE"],
+    allow_headers = ["Authorization", "Content-Type"],
 )
 @app.on_event("startup")
 async def startup_event():
