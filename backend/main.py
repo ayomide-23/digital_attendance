@@ -9,7 +9,9 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = ["https://digital-attendance-three.vercel.app"],
+    allow_origins = ["https://digital-attendance-three.vercel.app",
+                     "https://digital-attendance-2tkpays69-aderinto-ayomides-projects.vercel.app/",
+                     "https://digital-attendance-git-main-aderinto-ayomides-projects.vercel.app/"],
     allow_credentials = True,
     allow_methods = ["GET", "POST", "PUT", "DELETE"],
     allow_headers = ["Content-Type", "Authorization"],
